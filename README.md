@@ -121,7 +121,7 @@ To download our demonstration dataset, please see [Download Full Demonstration D
 
 This section introduces important details about our point cloud demonstration data. The format of our demonstrations is explained in [Demonstrations Format](#demonstrations-format). The provided point cloud demonstrations are downsampled and processed using an existing processing function, which is explained in more detail in [Observation Processing](#observation-processing). If you want to generate point cloud demonstrations using custom post-processing functions, please refer to [Generating Custom Point Cloud Demonstrations](#generating-custom-point-cloud-demonstrations).
 
-We did not generate RGB-D demonstration due to its massive size, but if you want to, please see [Generating RGB-D Demonstrations](#generating-rgb-d-demonstrations).
+We did not generate RGB-D demonstration since downsampling an RGB-D image can easily lose important information, while downsampling a point cloud is a lot easier. If you want to, please see [Generating RGB-D Demonstrations](#generating-rgb-d-demonstrations).
 
 ### Demonstrations Format
 
@@ -207,7 +207,7 @@ The sum of size of generated point cloud demonstrations for all environments of 
 
 ### Generating RGB-D Demonstrations
 
-We did not provide pre-generated RGB-D demonstrations because they cannot be subsampled, which means they have a much larger size than the point cloud demonstrations and would be in the scale of terabytes (300 trajs/env \* 170 training envs \* about 30 steps per traj \* 160 \* 400 \* 3 \* 4 \* 4bytes/float = 4.7TB). If you would like to train models using RGB-D demonstrations, you could also use `tools/convert_state.py` by passing `--obs_mode=rgbd`. In addition, you need to also implement custom network architectures that process RGB-D images.
+We did not provide pre-generated RGB-D demonstrations because, unlike point cloud demonstrations, they cannot be easily downsampled without losing important information, which means they have a much larger size and would be in the scale of terabytes (300 trajs/env \* 170 training envs \* about 30 steps per traj \* 160 \* 400 \* 3 \* 4 \* 4bytes/float = 4.7TB). If you would like to train models using RGB-D demonstrations, you could use `tools/convert_state.py` by passing `--obs_mode=rgbd` to generate the demonstrations. In addition, you need to also implement custom network architectures that process RGB-D images (see "Network Architectures" below).
 
 ## Workflow
 
@@ -279,7 +279,7 @@ The algorithm hyperparameters, along with the policy and value network architect
 
 Our network architectures are implemented in `mani_skill_learn/networks`. The `mani_skill_learn/networks/backbones` directory contains point cloud-based architectures such as PointNet and PointNet + Transformer. These specific architectures are built from configs during the policy and value network building processes.
 
-We did not implement RGB-D based architectures because the RGB-D demonstrations would be a lot larger than the point cloud demonstrations (since we cannot sub-sample the RGB-D images). Thus you need to implement custom image-based architectures if you want to train a model using RGB-D demonstrations.
+We did not implement RGB-D based architectures because the RGB-D demonstrations would be a lot larger than the point cloud demonstrations (since downsampling an RGB-D image can easily lose important information, while downsampling a point cloud is a lot easier). Thus you need to implement custom image-based architectures if you want to train a model using RGB-D demonstrations.
 
 Architecture-specific configurations are specified in the `agent/{policy or value network}/nn_cfg` entries of the config files. Note that some algorithms have multiple policy or value networks.
 
