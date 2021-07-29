@@ -117,9 +117,11 @@ After you download the full data, you are ready to start the ManiSkill challenge
 After you train a full model, you can submit it to our ManiSkill challenge. Please see [Challenge Submission](#challenge-submission) in [Workflow](#workflow) for more details.
 
 ## Demonstrations
-If you want to download demonstration dataset, you can check [Download Full Demonstration Data and Pretrained Models](#download-full-demonstration-data-and-pretrained-models).
+To download our demonstration dataset, please see [Download Full Demonstration Data and Pretrained Models](#download-full-demonstration-data-and-pretrained-models).
 
-This section introduces important details about our demonstration data. The format of our demonstrations is explained in [Demonstrations Format](#demonstrations-format). The provided point cloud demonstrations are downsampled and processed using an existing processing function, which is explained in more detail in [Observation Processing](#observation-processing). If you want to generate point cloud demonstrations using custom post-processing functions, please refer to [Generating Custom Point Cloud Demonstrations](#generating-custom-point-cloud-demonstrations).
+This section introduces important details about our point cloud demonstration data. The format of our demonstrations is explained in [Demonstrations Format](#demonstrations-format). The provided point cloud demonstrations are downsampled and processed using an existing processing function, which is explained in more detail in [Observation Processing](#observation-processing). If you want to generate point cloud demonstrations using custom post-processing functions, please refer to [Generating Custom Point Cloud Demonstrations](#generating-custom-point-cloud-demonstrations).
+
+We did not generate RGB-D demonstration due to its massive size, but if you want to, please see [Generating RGB-D Demonstrations](#generating-rgb-d-demonstrations).
 
 ### Demonstrations Format
 
@@ -276,6 +278,8 @@ The algorithm hyperparameters, along with the policy and value network architect
 ### Network Architectures
 
 Our network architectures are implemented in `mani_skill_learn/networks`. The `mani_skill_learn/networks/backbones` directory contains point cloud-based architectures such as PointNet and PointNet + Transformer. These specific architectures are built from configs during the policy and value network building processes.
+
+We did not implement RGB-D based architectures because the RGB-D demonstrations would be a lot larger than the point cloud demonstrations (since we cannot sub-sample the RGB-D images). Thus you need to implement custom image-based architectures if you want to train a model using RGB-D demonstrations.
 
 Architecture-specific configurations are specified in the `agent/{policy or value network}/nn_cfg` entries of the config files. Note that some algorithms have multiple policy or value networks.
 
