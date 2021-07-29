@@ -22,6 +22,7 @@ ManiSkill-Learn implements various point cloud-based network architectures (e.g.
     - [Observation Processing](#observation-processing)
     - [Generating Custom Point Cloud Demonstrations](#generating-custom-point-cloud-demonstrations)
     - [Chunking Demonstration Dataset](#chunking-demonstration-dataset)
+    - [Generating RGB-D Demonstrations](#generating-rgb-d-demonstrations)
   - [Workflow](#workflow)
     - [Training](#training)
     - [Evaluation](#evaluation)
@@ -195,12 +196,16 @@ dict_keys(['actions', 'dones', 'env_levels', 'env_scene_states',
 ```
 
 <!-- Here `env_states` is the environment's internal state (unable to be seen by an agent during training), and `env_levels` is the unique identifier of the object. -->
-The API for rendering and converting the above demonstration to point cloud data is provided in `tools/mani_skill/convert_state.py`
+The API for rendering and converting the above demonstration to point cloud data is provided in `tools/convert_state.py`.
 
-To run `convert_state.py`, example script is provided in `scripts/simple_mani_skill_example/convert_state_to_pcd.sh`. The script generates point cloud for only one of the environments, so you need to repeat so for all environments (see `available_environments.txt` in the ManiSkill repo)
+To run `convert_state.py`, example script is provided in `scripts/simple_mani_skill_example/convert_state_to_pcd.sh`. The script generates point cloud for only one of the environments, so you need to repeat so for all environments (see `available_environments.txt` in the ManiSkill repo).
 
 ### Chunking Demonstration Dataset
 The sum of size of generated point cloud demonstrations for all environments of a task is larger than 10G. After loading and converting into internal dataset, the total consumed memory during agent training will be 60 - 120G. If your computer does not have enough memory, you can use a chunked dataset. Please refer to [Demonstration Loading and Replay Buffer](#demonstration-loading-and-replay-buffer) for more details.
+
+### Generating RGB-D Demonstrations
+
+We did not provide pre-generated RGB-D demonstrations because they cannot by subsampled, which means they have a much larger size than the point cloud demonstrations and would be in the scale of terabytes (300 trajs/env \* 170 training envs \* about 30 steps per traj \* 160 \* 400 \* 3 \* 4 \* 4bytes/float = 4.7TB). If you would like to train models using RGB-D demonstrations, you could also use `tools/convert_state.py` by passing `--obs_mode=rgbd`. In addition, you need to also implement custom network architectures that process RGB-D images.
 
 ## Workflow
 
