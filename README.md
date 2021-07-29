@@ -205,7 +205,7 @@ The sum of size of generated point cloud demonstrations for all environments of 
 
 ### Generating RGB-D Demonstrations
 
-We did not provide pre-generated RGB-D demonstrations because they cannot by subsampled, which means they have a much larger size than the point cloud demonstrations and would be in the scale of terabytes (300 trajs/env \* 170 training envs \* about 30 steps per traj \* 160 \* 400 \* 3 \* 4 \* 4bytes/float = 4.7TB). If you would like to train models using RGB-D demonstrations, you could also use `tools/convert_state.py` by passing `--obs_mode=rgbd`. In addition, you need to also implement custom network architectures that process RGB-D images.
+We did not provide pre-generated RGB-D demonstrations because they cannot be subsampled, which means they have a much larger size than the point cloud demonstrations and would be in the scale of terabytes (300 trajs/env \* 170 training envs \* about 30 steps per traj \* 160 \* 400 \* 3 \* 4 \* 4bytes/float = 4.7TB). If you would like to train models using RGB-D demonstrations, you could also use `tools/convert_state.py` by passing `--obs_mode=rgbd`. In addition, you need to also implement custom network architectures that process RGB-D images.
 
 ## Workflow
 
