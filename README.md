@@ -116,6 +116,7 @@ After you download the full data, you are ready to start the ManiSkill challenge
 After you train a full model, you can submit it to our ManiSkill challenge. Please see [Challenge Submission](#challenge-submission) in [Workflow](#workflow) for more details.
 
 ## Demonstrations
+If you want to download demonstration dataset, you can check [Download Full Demonstration Data and Pretrained Models](#download-full-demonstration-data-and-pretrained-models).
 
 This section introduces important details about our demonstration data. The format of our demonstrations is explained in [Demonstrations Format](#demonstrations-format). The provided point cloud demonstrations are downsampled and processed using an existing processing function, which is explained in more detail in [Observation Processing](#observation-processing). If you want to generate point cloud demonstrations using custom post-processing functions, please refer to [Generating Custom Point Cloud Demonstrations](#generating-custom-point-cloud-demonstrations).
 
