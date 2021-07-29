@@ -180,7 +180,7 @@ Point clouds in the demonstration data we provided have already been processed b
 
 ### Generating Custom Point Cloud Demonstrations
 
-To generate custom point cloud demonstrations using custom post-processing functions (by replacing `process_sapien_rl_base`, see [Observation Processing](#observation-processing)), we have provided demonstrations containing all the necessary information to precisely reconstruct the environment at each time step.
+To generate custom point cloud demonstrations using custom post-processing functions (by replacing `process_sapien_rl_base`, see [Observation Processing](#observation-processing)), we have provided demonstrations containing all the necessary information to precisely reconstruct the environment at each time step. The files are stored in `full_mani_skill_state_data/`
 
 The demonstration has the following format:
 
