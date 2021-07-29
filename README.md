@@ -46,7 +46,7 @@ ManiSkill-Learn implements various point cloud-based network architectures (e.g.
 
 ManiSkill-Learn requires the python version to be >= 3.6 and torch version to be >= 1.5.0. We suggest users to use `python 3.8` and `pytorch 1.9.0` with `cuda 11.1`. The evaluation system of [ManiSkill challenge](https://sapien.ucsd.edu/challenges/maniskill2021/) uses `python 3.8.10`. To create the corresponding Anaconda environment, run `conda create -n "myenv" python=3.8.10`.
 
-To get started, enter the parent directory of where you installed ManiSkill (`mani_skill`) and clone this repo, then install with pip under the same environment where `mani_skill` is installed.
+To get started, enter the parent directory of where you installed [ManiSkill](https://github.com/haosulab/ManiSkill) (`mani_skill`) and clone this repo, then install with pip under the same environment where `mani_skill` is installed.
 
 ```
 cd {parent_directory_of_mani_skill}
