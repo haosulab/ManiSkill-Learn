@@ -100,7 +100,7 @@ All the data used in this repository is stored on [Google Drive](https://drive.g
 
 You can download the full point cloud demonstration dataset (which is stored [here](https://drive.google.com/drive/folders/1A7_WsbABXUpTKZiyoSuXpNvpIT-fNRpl)) along with models (which is stored [here](https://drive.google.com/drive/folders/1H28oLQdP4TtsLVN7dQPmdkAO4IjyYTGl)) pre-trained on all of our training object instances. The demonstration data and pre-trained models need to be stored under ```./full_mani_skill_data``` to run the provided scripts in `scripts/full_mani_skill_example`.
 
-The full data with environment state is store [here](https://drive.google.com/drive/u/1/folders/10KlIo7DIyMWUxc_NXarKcjPmaXyKJivo). If you want to render point cloud demonstrations from state demonstrations by yourself, you can download this dataset and read [Generating Custom Point Cloud Demonstrations].
+If you want to render point cloud demonstrations from state demonstrations by yourself, you can download the demonstration data with environment state [here](https://drive.google.com/drive/u/1/folders/10KlIo7DIyMWUxc_NXarKcjPmaXyKJivo) and put them in `./full_mani_skill_state_data/`. Please read [Demonstrations](#demonstrations) and [Generating Custom Point Cloud Demonstrations](#generating-custom-point-cloud-demonstrations).
 
 You can run ```python tools/check_md5.py``` to check if you download all the files correctly. 
 
@@ -180,7 +180,7 @@ Point clouds in the demonstration data we provided have already been processed b
 
 ### Generating Custom Point Cloud Demonstrations
 
-To generate custom point cloud demonstrations using custom post-processing functions (by replacing `process_sapien_rl_base`, see [Observation Processing](#observation-processing)), we have provided demonstrations containing all the necessary information to precisely reconstruct the environment at each time step. The files are stored in `full_mani_skill_state_data/`
+To generate custom point cloud demonstrations using custom post-processing functions (by replacing `process_sapien_rl_base`, see [Observation Processing](#observation-processing)), we have provided demonstrations containing all the necessary information to precisely reconstruct the environment at each time step. You should have downloaded the files in `./full_mani_skill_state_data/`
 
 The demonstration has the following format:
 
