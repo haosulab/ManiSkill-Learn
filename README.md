@@ -381,7 +381,16 @@ Some functions (e.g. config system, checkpoint) are adopted from [MMCV](https://
 
 ## Citation
 
-TBD
+```
+@misc{mu2021maniskill,
+      title={ManiSkill: Learning-from-Demonstrations Benchmark for Generalizable Manipulation Skills}, 
+      author={Tongzhou Mu and Zhan Ling and Fanbo Xiang and Derek Yang and Xuanlin Li and Stone Tao and Zhiao Huang and Zhiwei Jia and Hao Su},
+      year={2021},
+      eprint={2107.14483},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
+}
+```
 
 ## License
 ManiSkill-Learn is released under the Apache 2.0 license, while some specific operations in this library are with other licenses.
