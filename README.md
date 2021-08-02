@@ -382,13 +382,11 @@ Some functions (e.g. config system, checkpoint) are adopted from [MMCV](https://
 ## Citation
 
 ```
-@misc{mu2021maniskill,
-      title={ManiSkill: Learning-from-Demonstrations Benchmark for Generalizable Manipulation Skills}, 
-      author={Tongzhou Mu and Zhan Ling and Fanbo Xiang and Derek Yang and Xuanlin Li and Stone Tao and Zhiao Huang and Zhiwei Jia and Hao Su},
-      year={2021},
-      eprint={2107.14483},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG}
+@article{mu2021maniskill,
+  title={ManiSkill: Learning-from-Demonstrations Benchmark for Generalizable Manipulation Skills},
+  author={Mu, Tongzhou and Ling, Zhan and Xiang, Fanbo and Yang, Derek and Li, Xuanlin, and Tao, Stone and Huang, Zhiao and Jia, Zhiwei and Su, Hao},
+  journal={arXiv preprint arXiv:2107.14483},
+  year={2021}
 }
 ```
 
