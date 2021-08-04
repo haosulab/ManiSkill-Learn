@@ -1,6 +1,6 @@
 # ManiSkill-Learn
 
-ManiSkill-Learn is a framework for training agents on [SAPIEN Manipulation Skill Challenge](https://sapien.ucsd.edu/challenges/maniskill2021/), a large-scale learning-from-demonstrations benchmark for object manipulation. In this challenge, an agent is aimed at generalizing its manipulation skills to unseen objects of the same category given demonstrations and inputs.
+ManiSkill-Learn is a framework for training agents on [SAPIEN Open-Source Manipulation Skill Challenge](https://sapien.ucsd.edu/challenges/maniskill2021/), a large-scale learning-from-demonstrations benchmark for object manipulation. In this challenge, an agent is aimed at generalizing its manipulation skills to unseen objects of the same category given demonstrations and inputs.
 
 *An important feature of this package is that it supports visual inputs, especially point-cloud inputs.* Such visual data is widely obtainable and applicable in real-world settings, such as self-driving and robotics. Point cloud features also contain explicit and accurate positional information, which could be challenging to be inferred purely through RGB-D images.
 
