@@ -1,8 +1,8 @@
 # ManiSkill-Learn
 
-ManiSkill-Learn is a framework for training agents on [SAPIEN Open-Source Manipulation Skill Challenge](https://sapien.ucsd.edu/challenges/maniskill2021/), a large-scale learning-from-demonstrations benchmark for object manipulation. In this challenge, an agent is aimed at generalizing its manipulation skills to unseen objects of the same category given demonstrations and inputs.
+ManiSkill-Learn is a framework for training agents on [SAPIEN Open-Source Manipulation Skill Challenge](https://sapien.ucsd.edu/challenges/maniskill2021/), a physics-rich generalizable manipulation skill benchmark over diverse objects with large-scale demonstrations.
 
-*An important feature of this package is that it supports visual inputs, especially point-cloud inputs.* Such visual data is widely obtainable and applicable in real-world settings, such as self-driving and robotics. Point cloud features also contain explicit and accurate positional information, which could be challenging to be inferred purely through RGB-D images.
+*An important feature of this package is that it supports visual inputs, especially point-cloud inputs.* Such visual data is widely accessable in real-world settings, such as self-driving and robotics. Previous work [link](https://arxiv.org/pdf/1812.07179.pdf) has also found significant performance improvement by using point cloud instead of RGB-D.
 
 ManiSkill-Learn implements various point cloud-based network architectures (e.g. PointNet, PointNet Transformer) adapted to various learning-from-demonstrations algorithms (e.g. Behavior Cloning(BC), Offline/Batch RL([BCQ](https://arxiv.org/pdf/1812.02900.pdf), [CQL](https://arxiv.org/pdf/2006.04779.pdf), [TD3-BC](https://arxiv.org/pdf/2106.06860.pdf))). It is easy for everyone to design new network architectures and new learning-from-demonstrations algorithms, change the observation processing framework, and generate new demonstrations.
 
