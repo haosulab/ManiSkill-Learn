@@ -6,6 +6,11 @@ ManiSkill-Learn is a framework for training agents on [SAPIEN Open-Source Manipu
 
 ManiSkill-Learn implements various point cloud-based network architectures (e.g. PointNet, PointNet Transformer) adapted to various learning-from-demonstrations algorithms (e.g. Behavior Cloning(BC), Offline/Batch RL([BCQ](https://arxiv.org/pdf/1812.02900.pdf), [CQL](https://arxiv.org/pdf/2006.04779.pdf), [TD3-BC](https://arxiv.org/pdf/2106.06860.pdf))). It is easy for everyone to design new network architectures and new learning-from-demonstrations algorithms, change the observation processing framework, and generate new demonstrations.
 
+Updates:
+
+Aug. 29, 2021: Increased replay buffer capacity in config file if trained with demonstration dataset chunking, as small buffer could cause trajectories in a batch to come from only one training object, which significantly slows down training loss decay.
+
+
 - [ManiSkill-Learn](#maniskill-learn)
   - [Getting Started](#getting-started)
     - [Installation](#installation)
