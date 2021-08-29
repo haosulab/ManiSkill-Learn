@@ -9,7 +9,7 @@ env_cfg = dict(
 
 replay_cfg = dict(
     type='ReplayDisk',
-    capacity=1280,
+    capacity=12800,
 )
 
 train_mfrl_cfg = dict(
