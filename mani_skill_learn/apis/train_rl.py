@@ -256,4 +256,5 @@ def train_rl(agent, rollout, evaluator, env_cfg, replay, on_policy, work_dir, to
             break
     if n_checkpoint:
         print(f'Save checkpoint at final step {total_steps}')
+        agent.to_normal()
         save_checkpoint(agent, osp.join(checkpoint_dir, f'model_{total_steps}.ckpt'))
