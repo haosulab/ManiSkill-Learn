@@ -247,6 +247,10 @@ If you want to include functionalities in our ManiSkill-Learn repo for your subm
 
 Before submitting to our server, you can utilize the ManiSkill (local) evaluation tool to ensure that things are set up correctly (please refer to "Evaluation" section in the ManiSkill repo).
 
+Here is a reference performance table for our baseline algorithms implemented in ManiSkill-Learn (note that standard deviation in this table is the standard deviation between the *mean success rates* of different runs, while the standard deviation reported when running our evaluation scripts is with regard to the values of the success indicator variable in different trajectories in one single run):
+
+![baseline_results.png](baseline_results.png)
+
 ## Detailed Functionalities and Config Settings
 
 This section introduces different modules and functionalities in ManiSkill-Learn, along with how the config settings are parsed in our scripts. This section is especially useful if you want to implement any new functionalities or make changes to the default config settings we have given.
