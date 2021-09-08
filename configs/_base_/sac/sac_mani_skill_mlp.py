@@ -8,12 +8,6 @@ env_cfg = dict(
     reward_type='dense',
 )
 
-'''
-env_cfg = dict(
-    type='gym',
-    unwrapped=False,
-)'''
-
 agent = dict(
     type='SAC',
     batch_size=1024,
@@ -64,7 +58,7 @@ replay_cfg = dict(
     capacity=1000000,
 )
 
-train_rl_cfg = dict(
+train_mfrl_cfg = dict(
     total_steps=1000000,
     warm_steps=4000,
     n_eval=200000,
