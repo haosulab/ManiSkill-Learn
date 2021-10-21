@@ -5,8 +5,13 @@ try:
     with contextlib.redirect_stdout(None):
         import mani_skill.env
         # import d4rl    # If you want to run on d4rl, you can add this line.
-except ImportError:
-    pass
+except ImportError as e:
+    print("!!! WARNING: mani_skill.env import error (when executing mani_skill_learn/env/builder.py) !!!")
+    print("Please check your installation. The error is:")
+    print(e)
+    print("")
+    print("------ Continuing program execution, ignoring mani_skill.env ------")
+    
 from mani_skill_learn.utils.meta import Registry, build_from_cfg
 
 
