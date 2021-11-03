@@ -8,6 +8,8 @@ ManiSkill-Learn implements various point cloud-based network architectures (e.g.
 
 Updates:
 
+Nov. 2, 2021: Added some utils for saving trajectories if you want to work on RGB-D inputs.
+
 Aug. 29, 2021: Increased replay buffer capacity in config file if trained with demonstration dataset chunking, as small buffer could cause trajectories in a batch to come from only one training object, which significantly slows down training loss decay.
 
 
@@ -213,6 +215,91 @@ The sum of size of generated point cloud demonstrations for all environments of 
 ### Generating RGB-D Demonstrations
 
 We did not provide pre-generated RGB-D demonstrations because, unlike point cloud demonstrations, they cannot be easily downsampled without losing important information, which means they have a much larger size and would be in the scale of terabytes (300 trajs/env \* 170 training envs \* about 30 steps per traj \* 160 \* 400 \* 3 \* 4 \* 4bytes/float = 4.7TB). If you would like to train models using RGB-D demonstrations, you could use `tools/convert_state.py` by passing `--obs_mode=rgbd` to generate the demonstrations. In addition, you need to also implement custom network architectures that process RGB-D images (see "Network Architectures" below).
+
+To compress RGB-D images when saving demo trajectories, here we provide some utils:
+
+```
+import numpy as np, cv2, base64
+
+def compress_image(x, depth=False):
+    # Image only
+    if x.dtype == np.float64:
+        x = x.astype(np.float32)
+    if x.dtype == np.float32:
+        if not depth:
+            x = np.clip((x * 255).astype(np.int), a_min=0, a_max=255).astype(np.uint8)
+            return x
+        else:
+            # Assume 0 <= x <= 1 and real depth = (1 - x) * 1/near + x * 1/far.
+            # x = np.clip(((x - 0.5) * 32767).astype(np.int), a_min=-32767, a_max=32767).astype(np.int16)
+            x = np.clip((x * 65535).astype(np.int), a_min=0, a_max=65535).astype(np.uint16)
+            return x
+    return x
+
+
+def decompress_image(x):
+    if x.dtype == 'uint8':
+        return x / 255
+    elif x.dtype == 'uint16':
+        return x / 65535
+    else:
+        return x
+        
+def compress_obs(obs, compress_type='maniskill-rgbd'):
+    
+    def imencode(img, format='.png', binary=True):
+        ret =  cv2.imencode(format, img)[1]
+        if binary:
+            ret = base64.binascii.b2a_base64(ret)
+        return ret
+        
+    if compress_type == 'maniskill-rgbd':
+        rgbd = obs['rgbd']
+        rgb = rgbd['rgb']
+        depth = rgbd['depth']
+        seg = rgbd['seg']
+
+        num_image = depth.shape[-1]
+        assert num_image * 3 == rgb.shape[-1]
+        rgb = np.split(rgb, num_image, axis=-1)
+        depth = np.split(depth, num_image, axis=-1)
+        seg = np.split(seg, num_image, axis=-1)
+        assert seg[0].shape[-1] <= 8
+        
+        # Concat all boolean mask of segmentation and add the one 
+        seg = [np.packbits(np.concatenate([_, np.ones_like(_[..., :1])], axis=-1), axis=-1, bitorder='little') for _ in seg]
+        seg = [imencode(_) for _ in seg]
+        rgb = [imencode(_) for _ in rgb]
+        depth = [imencode(_) for _ in depth]    
+        obs['rgbd'] = {'rgb': rgb, 'depth': depth, 'seg': seg}
+        return obs
+    else:
+        raise NotImplementedError()
+
+
+def decompress_obs(obs, compress_type='maniskill-rgbd', **kwargs):
+    
+    def imdecode(sparse_array):
+        if isinstance(sparse_array, (bytes, np.void)):
+            sparse_array = np.frombuffer(base64.binascii.a2b_base64(sparse_array), dtype=np.uint8)
+        return cv2.imdecode(sparse_array, -1)
+
+    if compress_type == 'maniskill-rgbd':
+        rgbd = obs['rgbd']
+        rgb = rgbd['rgb']
+        depth = rgbd['depth']
+        seg = rgbd['seg']
+        seg = [imdecode(_[0])[..., None] for _ in seg]
+        num_segs = int(seg[0][0, 0, 0]).bit_length() - 1
+        seg = np.concatenate([np.unpackbits(_, axis=-1, count=num_segs, bitorder='little') for _ in seg], axis=-1).astype(np.bool)
+        rgb = np.concatenate([imdecode(_[0]) for _ in rgb], axis=-1)
+        depth = np.concatenate([imdecode(_[0])[..., None] for _ in depth], axis=-1)  # uint16
+        obs['rgbd'] = {'rgb': rgb, 'depth': depth, 'seg': seg}
+        return obs  
+    else:
+        raise NotImplementedError()
+
+```
 
 ## Workflow
 
