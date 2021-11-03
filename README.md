@@ -162,7 +162,7 @@ You may notice that the structure of `obs` and `next_obs` is different from the 
 ```
 >>> import mani_skill.env, gym
 >>> env=gym.make('OpenCabinetDoor-v0')
->>> env.seg_env_mode(obs_mode='pointcloud')
+>>> env.set_env_mode(obs_mode='pointcloud')
 >>> obs=env.reset()
 {
   'agent': ... , # a vector that describes agent's state, including pose, velocity, angular velocity of the moving platform of the robot, joint angles and joint velocities of all robot joints, positions and velocities of end-effectors
