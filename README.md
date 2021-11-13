@@ -465,7 +465,7 @@ For `replay_cfg`, the `capacity` config refers to the limit on the number of (ob
 
 If your computer does not have enough memory to load all demonstrations at once, you can generate a chunked dataset by using `tools/split_datasets.py`. The demonstrations from different environments will be randomly shuffled and stored into several files under the specified folder. To load a chunked dataset for agent training, you need let `replay_cfg.type='ReplayDisk'` and `train_mfrl_cfg.init_replay_buffers='the folder that stores the chunked dataset'`. To find more details, you can check out `configs/bc/mani_skill_point_cloud_transformer_disk.py`. Example scripts are in `scripts/simple_mani_skill_example/run_with_chunked_dataset.sh` and `scripts/full_mani_skill_example/run_with_chunked_dataset.sh`.
 
-`Warning:` If you are using `Replay Disk`, please make sure `replay_cfg.capacity` to be larger than the size of one chunked file, because we do not shuffle the elements in the chunked file. A small `replay_cfg.capacity` may cause instable training.
+`Warning:` If you are using `Replay Disk`, please make sure `replay_cfg.capacity` to be larger than the size of one chunked file, because we do not shuffle the elements in the chunked file. A small `replay_cfg.capacity` may cause unstable training.
 
 ### Evaluation
 
