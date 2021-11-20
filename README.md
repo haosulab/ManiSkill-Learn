@@ -330,7 +330,7 @@ Example evaluation scripts using existing pretrained models can be found in `scr
 
 To create a submission for the ManiSkill challenge, please read the instructions in [mani-skill-submission-example](https://github.com/haosulab/ManiSkill-Submission-Example) first.
 
-If you want to include functionalities in our ManiSkill-Learn repo for your submission, example `user_solution.py` and `environment.yml` can be found in the `submission_example` directory. In this case, please first move these files directly under the repo (i.e. move them to `{this_repo}/user_solution.py` and `{this_repo}/environment.yaml`). Also please ensure that the correct versions of `torch` and `torchvision` are in `environment.yml`.
+***If you want to include functionalities in our ManiSkill-Learn repo for your submission, example `user_solution.py` and `environment.yml` can be found in the `submission_example` directory. In this case, please first move these files directly under the repo (i.e. move them to `{this_repo}/user_solution.py` and `{this_repo}/environment.yaml`). Also please ensure that the correct versions of `torch` and `torchvision` are in `environment.yml`.***
 
 Before submitting to our server, you can utilize the ManiSkill (local) evaluation tool to ensure that things are set up correctly (please refer to "Evaluation" section in the ManiSkill repo).
 
