@@ -8,6 +8,8 @@ ManiSkill-Learn implements various point cloud-based network architectures (e.g.
 
 Updates:
 
+Jun. 27, 2022: Original observation processing in `observation_process.py` has a bug [here](https://github.com/haosulab/ManiSkill-Learn/blob/9742da932448a5234222cf94381ca0f861dc83fd/mani_skill_learn/env/observation_process.py#L60) since numpy `logical_or` cannot take >2 arrays at the same time (in the case of 3 arrays, it will copy the result to the third array). This can be fixed with `bk_seg = ~seg.any(-1, keepdims=True)`. In OpenCabinet environments, this bug causes robot segmentation information in downsampled robot points to be removed, even though these points still remain in the returned array as intended. For PushChair and MoveBucket, results are not affected. For reproducing original result purposes, this line is not fixed. Users are free to fix this themselves.
+
 Nov. 2, 2021: Added some utils for saving trajectories if you want to work on RGB-D inputs.
 
 Aug. 29, 2021: Increased replay buffer capacity in config file if trained with demonstration dataset chunking, as small buffer could cause trajectories in a batch to come from only one training object, which significantly slows down training loss decay.
