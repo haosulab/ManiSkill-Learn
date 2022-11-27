@@ -1,5 +1,7 @@
 # ManiSkill-Learn
 
+**Note: this repository is the learning framework for ManiSkill1. If you are looking for the learning framework of ManiSkill2, please visit [ManiSkill2-learn](https://github.com/haosulab/ManiSkill2-Learn), which features improved code, utils & API, and supports more efficient parallelized policy learning.**
+
 ManiSkill-Learn is a framework for training agents on [SAPIEN Open-Source Manipulation Skill Challenge](https://sapien.ucsd.edu/challenges/maniskill2021/), a physics-rich generalizable manipulation skill benchmark over diverse objects with large-scale demonstrations.
 
 *An important feature of this package is that it supports visual inputs, especially point-cloud inputs.* Such visual data is widely accessable in real-world settings, such as self-driving and robotics. Previous work [link](https://arxiv.org/pdf/1812.07179.pdf) has also found significant performance improvement by using point cloud instead of RGB-D.
